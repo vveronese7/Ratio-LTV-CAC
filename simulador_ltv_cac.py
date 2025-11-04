@@ -89,12 +89,6 @@ churn_rate_mensal = st.sidebar.number_input(
 # Calcula tempo médio de retenção
 tempo_retencao = 1 / churn_rate_mensal
 
-# Exibe no sidebar
-st.sidebar.markdown(f"**Tempo Médio de Retenção:** {tempo_retencao:.2f} meses")
-
-# Calcula tempo médio de retenção
-tempo_retencao = 1 / churn_rate_mensal
-
 # Calcula LTV com margem completa
 ltv_completo = ticket_medio * margem_completa * tempo_retencao
 
