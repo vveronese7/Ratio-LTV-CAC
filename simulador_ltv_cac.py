@@ -125,10 +125,37 @@ st.dataframe(df_resultados.style.format({"LTV/CAC": "{:.2f}"}))
 
 # Gráfico
 fig = go.Figure()
-fig.add_trace(go.Bar(x=df_resultados["Cenário"], y=df_resultados["LTV/CAC"]))
+fig.add_trace(go.Bar(x=df_resultados["Cenário"], y=df_resultados["LTV/CAC"],
+                        textposition="outside"  # exibe acima das barras
+                    ))
 fig.update_layout(title="Comparação de Cenários LTV/CAC",
                   xaxis_title="Cenário",
                   yaxis_title="Ratio LTV/CAC",
                   bargap=0.4)
+
+colors = [
+    "rgb(39, 80, 155)",   # Azul Michelin
+    "rgb(252, 229, 0)",   # Amarelo Michelin
+    "rgb(234, 75, 107)",  # Rosa
+    "rgb(239, 125, 0)",   # Laranja
+    "rgb(60, 175, 175)",  # Verde Água
+    "rgb(173, 226, 93)"   # Verde Claro
+]
+
+fig = go.Figure()
+fig.add_trace(go.Bar(
+    x=df_resultados["Cenário"],
+    y=df_resultados["LTV/CAC"],
+    text=[f"{v:.2f}" for v in df_resultados["LTV/CAC"]],
+    textposition="outside",
+    textfont=dict(size=16, color="black"),  # Fonte maior e preta
+    marker_color=colors  # Aplica cores diferentes
+))
+fig.update_layout(
+    title="Comparação de Cenários LTV/CAC",
+    xaxis_title="Cenário",
+    yaxis_title="Ratio LTV/CAC",
+    bargap=0.4
+)
 
 st.plotly_chart(fig)
