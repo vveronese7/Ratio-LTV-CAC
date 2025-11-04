@@ -128,10 +128,16 @@ fig = go.Figure()
 fig.add_trace(go.Bar(x=df_resultados["Cenário"], y=df_resultados["LTV/CAC"],
                         textposition="outside"  # exibe acima das barras
                     ))
-fig.update_layout(title="Comparação de Cenários LTV/CAC",
-                  xaxis_title="Cenário",
-                  yaxis_title="Ratio LTV/CAC",
-                  bargap=0.4)
+fig.update_layout(
+    title="Comparação de Cenários LTV/CAC",
+    xaxis_title="Cenário",
+    yaxis_title="Ratio LTV/CAC",
+    bargap=0.4,
+    height=600,  # aumenta a altura
+    width=1000,  # aumenta a largura
+    margin=dict(t=80, b=150)  # aumenta espaço superior e inferior
+)
+fig.update_xaxes(tickangle=-30)
 
 colors = [
     "rgb(39, 80, 155)",   # Azul Michelin
