@@ -86,9 +86,40 @@ churn_rate_mensal = st.sidebar.number_input(
     min_value=0.01, max_value=50.00, value=3.00, step=0.01
 ) / 100  # Converte para decimal
 
+# Calcula tempo médio de retenção
+tempo_retencao = 1 / churn_rate_mensal
+
+# Exibe no sidebar
+st.sidebar.markdown(f"**Tempo Médio de Retenção:** {tempo_retencao:.2f} meses")
+
+# Calcula tempo médio de retenção
+tempo_retencao = 1 / churn_rate_mensal
+
+# Calcula LTV com margem completa
+ltv_completo = ticket_medio * margem_completa * tempo_retencao
+
+# Calcula LTV sem depreciação
+ltv_sem_depreciacao = ticket_medio * margem_sem_depreciacao * tempo_retencao
+
+# Exibe no sidebar
+st.sidebar.markdown(f"**Tempo Médio de Retenção:** {tempo_retencao:.2f} meses")
+st.sidebar.markdown(f"**LTV (com depreciação):** R$ {ltv_completo:,.2f}")
+st.sidebar.markdown(f"**LTV (sem depreciação):** R$ {ltv_sem_depreciacao:,.2f}")
+
 capex_equipamento = st.sidebar.number_input("CAPEX do equipamento (R$)", value=3000.0)
 custo_aquisicao_outros = st.sidebar.number_input("Outros custos de aquisição (R$)", value=500.0)
 vida_util_meses = st.sidebar.number_input("Vida útil do equipamento (meses)", value=36)
+
+# Calcula CACs
+cac_completo = capex_equipamento + custo_aquisicao_outros
+cac_amortizado = (capex_equipamento / vida_util_meses) * tempo_retencao + custo_aquisicao_outros
+cac_sem_capex = custo_aquisicao_outros
+
+# Exibe no sidebar
+st.sidebar.markdown("### 📊 Valores Calculados")
+st.sidebar.markdown(f"**CAC Completo:** R$ {cac_completo:,.2f}")
+st.sidebar.markdown(f"**CAC Amortizado:** R$ {cac_amortizado:,.2f}")
+st.sidebar.markdown(f"**CAC sem CAPEX:** R$ {cac_sem_capex:,.2f}")
 
 # Simulação
 df_resultados = simular_ltv_cac(ticket_medio, margem_completa, margem_sem_depreciacao,
