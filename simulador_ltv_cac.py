@@ -3,6 +3,19 @@ import streamlit as st
 import pandas as pd
 import plotly.graph_objects as go
 
+canais = {
+    "SPC": {"ticket": 500, "margem_completa": 0.50, "margem_sem_deprec": 0.60, "churn": 0.03, "capex": 3000, "outros": 500, "vida_util": 36},
+    "SPI": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "RS": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "PR": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "CO": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "MGRJES": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "NONE": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "PequenoFrotista": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "Premium": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+    "Freteiros": {"ticket": 700, "margem_completa": 0.45, "margem_sem_deprec": 0.55, "churn": 0.02, "capex": 4000, "outros": 600, "vida_util": 48},
+}
+
 # Função para calcular tempo médio de retenção
 def tempo_medio_retencao(churn_rate):
     return 1 / churn_rate
@@ -68,7 +81,28 @@ st.markdown("""
 - **Outros Custos de Aquisição**: marketing, vendas, etc.
 """)
 
+canal_selecionado = st.sidebar.selectbox("Selecione um canal", list(canais.keys()))
+if st.sidebar.button("Preencher parâmetros"):
+    valores = canais[canal_selecionado]
+    ticket_medio = valores["ticket"]
+    margem_completa = valores["margem_completa"]
+    margem_sem_depreciacao = valores["margem_sem_deprec"]
+    churn_rate_mensal = valores["churn"]
+    capex_equipamento = valores["capex"]
+    custo_aquisicao_outros = valores["outros"]
+    vida_util_meses = valores["vida_util"]
+else:
+    # Valores padrão caso não clique no botão
+    ticket_medio = 500
+    margem_completa = 0.50
+    margem_sem_depreciacao = 0.60
+    churn_rate_mensal = 0.03
+    capex_equipamento = 3000
+    custo_aquisicao_outros = 500
+    vida_util_meses = 36
+
 st.sidebar.header("Parâmetros de Entrada")
+
 ticket_medio = st.sidebar.number_input("Ticket médio mensal (R$)", value=500.0)
 
 margem_completa = st.sidebar.number_input(
@@ -85,6 +119,14 @@ churn_rate_mensal = st.sidebar.number_input(
     "Churn rate mensal (%)", 
     min_value=0.01, max_value=50.00, value=3.00, step=0.01
 ) / 100  # Converte para decimal
+
+ticket_medio = st.sidebar.number_input("Ticket médio mensal (R$)", value=ticket_medio)
+margem_completa = st.sidebar.number_input("Margem bruta completa (%)", value=margem_completa * 100) / 100
+margem_sem_depreciacao = st.sidebar.number_input("Margem bruta sem depreciação (%)", value=margem_sem_depreciacao * 100) / 100
+churn_rate_mensal = st.sidebar.number_input("Churn rate mensal (%)", value=churn_rate_mensal * 100) / 100
+capex_equipamento = st.sidebar.number_input("CAPEX do equipamento (R$)", value=capex_equipamento)
+custo_aquisicao_outros = st.sidebar.number_input("Outros custos de aquisição (R$)", value=custo_aquisicao_outros)
+vida_util_meses = st.sidebar.number_input("Vida útil do equipamento (meses)", value=vida_util_meses)
 
 # Calcula tempo médio de retenção
 tempo_retencao = 1 / churn_rate_mensal
