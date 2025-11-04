@@ -47,15 +47,10 @@ def simular_ltv_cac(ticket_medio, margem_completa, margem_sem_depreciacao,
 # Interface Streamlit
 st.title("Simulador de Cenários LTV/CAC")
 
-st.markdown(r"""
-### 📘 Fórmula do LTV
-
-O cálculo do Lifetime Value (LTV) utilizado neste simulador é:
-
-\[
-\text{LTV} = \text{Ticket Médio Mensal} \times \text{Margem Bruta} \times \left( \frac{1}{\text{Churn Rate Mensal}} \right)
-\]
-
+st.markdown("### 📘 Fórmula do LTV")
+st.markdown("O cálculo do Lifetime Value (LTV) utilizado neste simulador é:")
+st.latex(r"LTV = Ticket\ Médio\ Mensal \times Margem\ Bruta \times \left( \frac{1}{Churn\ Rate\ Mensal} \right)")
+st.markdown("""
 **Onde:**
 - **Ticket Médio Mensal**: valor médio pago pelo cliente por mês.
 - **Margem Bruta**: pode considerar ou não a depreciação dos equipamentos.
