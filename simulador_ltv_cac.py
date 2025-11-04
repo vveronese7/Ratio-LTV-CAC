@@ -59,19 +59,22 @@ st.markdown("""
 
 st.sidebar.header("Parâmetros de Entrada")
 ticket_medio = st.sidebar.number_input("Ticket médio mensal (R$)", value=500.0)
-margem_completa = st.sidebar.slider(
-    "Margem bruta completa (%)", 
-    0.00, 1.00, 0.50, step=0.0001, format="%.4f"
-)
-margem_sem_depreciacao = st.sidebar.slider(
-    "Margem bruta sem depreciação (%)", 
-    0.00, 1.00, 0.60, step=0.0001, format="%.4f"
-)
 
-churn_rate_mensal = st.sidebar.slider(
+margem_completa = st.sidebar.number_input(
+    "Margem bruta completa (%)", 
+    min_value=0.00, max_value=100.00, value=50.00, step=0.01
+) / 100  # Converte para decimal
+
+margem_sem_depreciacao = st.sidebar.number_input(
+    "Margem bruta sem depreciação (%)", 
+    min_value=0.00, max_value=100.00, value=60.00, step=0.01
+) / 100  # Converte para decimal
+
+churn_rate_mensal = st.sidebar.number_input(
     "Churn rate mensal (%)", 
-    0.0001, 0.5000, 0.0300, step=0.0001, format="%.4f"
-)
+    min_value=0.01, max_value=50.00, value=3.00, step=0.01
+) / 100  # Converte para decimal
+
 capex_equipamento = st.sidebar.number_input("CAPEX do equipamento (R$)", value=3000.0)
 custo_aquisicao_outros = st.sidebar.number_input("Outros custos de aquisição (R$)", value=500.0)
 vida_util_meses = st.sidebar.number_input("Vida útil do equipamento (meses)", value=36)
