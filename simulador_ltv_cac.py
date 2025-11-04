@@ -137,7 +137,6 @@ fig.update_layout(
     width=1000,  # aumenta a largura
     margin=dict(t=80, b=150)  # aumenta espaço superior e inferior
 )
-fig.update_xaxes(tickangle=-30)
 
 colors = [
     "rgb(39, 80, 155)",   # Azul Michelin
