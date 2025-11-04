@@ -57,6 +57,18 @@ st.markdown("""
 - **Churn Rate Mensal**: taxa de cancelamento mensal dos clientes.
 """)
 
+st.markdown("### 📘 Fórmula do CAC Amortizado")
+st.markdown("O cálculo do CAC Amortizado utilizado neste simulador é:")
+st.latex(r"CAC_{amortizado} = \left( \frac{CAPEX\ do\ Equipamento}{Vida\ Útil\ (meses)} \times Tempo\ Médio\ de\ Retenção \right) + Outros\ Custos\ de\ Aquisição")
+st.markdown("""
+**Onde:**
+- **CAPEX do Equipamento**: custo total do equipamento instalado.
+- **Vida Útil (meses)**: período em que o equipamento é depreciado.
+- **Tempo Médio de Retenção**: calculado como 1 / Churn Rate Mensal.
+- **Outros Custos de Aquisição**: marketing, vendas, etc.
+""")
+``
+
 st.sidebar.header("Parâmetros de Entrada")
 ticket_medio = st.sidebar.number_input("Ticket médio mensal (R$)", value=500.0)
 
