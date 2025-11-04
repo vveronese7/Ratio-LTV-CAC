@@ -49,9 +49,19 @@ st.title("Simulador de Cenários LTV/CAC")
 
 st.sidebar.header("Parâmetros de Entrada")
 ticket_medio = st.sidebar.number_input("Ticket médio mensal (R$)", value=500.0)
-margem_completa = st.sidebar.slider("Margem bruta completa (%)", 0.00, 1.00, 0.50, step=0.0001)
-margem_sem_depreciacao = st.sidebar.slider("Margem bruta sem depreciação (%)", 0.00, 1.00, 0.60, step=0.0001)
-churn_rate_mensal = st.sidebar.slider("Churn rate mensal (%)", 0.0001, 0.5000, 0.0300, step=0.0001)
+margem_completa = st.sidebar.slider(
+    "Margem bruta completa (%)", 
+    0.00, 1.00, 0.50, step=0.0001, format="%.4f"
+)
+margem_sem_depreciacao = st.sidebar.slider(
+    "Margem bruta sem depreciação (%)", 
+    0.00, 1.00, 0.60, step=0.0001, format="%.4f"
+)
+
+churn_rate_mensal = st.sidebar.slider(
+    "Churn rate mensal (%)", 
+    0.0001, 0.5000, 0.0300, step=0.0001, format="%.4f"
+)
 capex_equipamento = st.sidebar.number_input("CAPEX do equipamento (R$)", value=3000.0)
 custo_aquisicao_outros = st.sidebar.number_input("Outros custos de aquisição (R$)", value=500.0)
 vida_util_meses = st.sidebar.number_input("Vida útil do equipamento (meses)", value=36)
