@@ -67,7 +67,6 @@ st.markdown("""
 - **Tempo Médio de Retenção**: calculado como 1 / Churn Rate Mensal.
 - **Outros Custos de Aquisição**: marketing, vendas, etc.
 """)
-``
 
 st.sidebar.header("Parâmetros de Entrada")
 ticket_medio = st.sidebar.number_input("Ticket médio mensal (R$)", value=500.0)
