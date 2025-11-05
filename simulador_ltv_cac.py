@@ -167,36 +167,3 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig)
-
-# Carregar biblioteca de parâmetros
-df = pd.read_excel("data/20251104_Biblioteca_LTVCAC.xlsx", sheet_name="Planilha1")
-
-# Extrair lista de canais
-canais = [
-    "REGIONAL SPC", "REGIONAL SPI", "REGIONAL RS", "REGIONAL PR", "REGIONAL CO",
-    "REGIONAL MG/RJ/ES", "REGIONAL NO/NE", "Pq. Frotista", "REGIONAL PREMIUM", "FRETEIROS"
-]
-
-# Criar selectbox para escolher canal
-canal_selecionado = st.selectbox("Selecione um canal da biblioteca:", canais)
-
-# Mapear índices para cada canal
-idx = canais.index(canal_selecionado)
-
-# Preencher parâmetros automaticamente
-ticket_medio = df.iloc[1, idx]  # Ticket médio mensal
-margem_bruta = df.iloc[2, idx]  # Margem bruta completa
-margem_sem_dep = df.iloc[3, idx]
-churn_rate = df.iloc[4, idx]
-capex = df.iloc[5, idx]
-outros_custos = df.iloc[6, idx]
-vida_util = df.iloc[7, idx]
-
-# Exibir campos editáveis com valores pré-carregados
-ticket_medio = st.number_input("Ticket médio mensal (R$)", value=float(ticket_medio))
-margem_bruta = st.number_input("Margem bruta completa (%)", value=float(margem_bruta))
-margem_sem_dep = st.number_input("Margem bruta sem depreciação (%)", value=float(margem_sem_dep))
-churn_rate = st.number_input("Churn rate mensal (%)", value=float(churn_rate))
-capex = st.number_input("CAPEX do equipamento (R$)", value=float(capex))
-outros_custos = st.number_input("Outros custos de aquisição (R$)", value=float(outros_custos))
-vida_util = st.number_input("Vida útil do equipamento (meses)", value=int(vida_util))
