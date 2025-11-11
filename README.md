@@ -63,4 +63,4 @@ Seu app estará disponível em um link público para acesso via navegador.
 ---
 
 ## 📬 Contato
-Para dúvidas ou sugestões, entre em contato com o autor do repositório.
+Para dúvidas ou sugestões, entre em contato com Vinicius Veronese (Especialista Progresso)
