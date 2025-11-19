@@ -65,7 +65,7 @@ st.markdown("""
 - **CAPEX do Equipamento**: custo total do equipamento instalado.
 - **Vida Útil (meses)**: período em que o equipamento é depreciado.
 - **Tempo Médio de Retenção**: calculado como 1 / Churn Rate Mensal.
-- **Outros Custos de Aquisição**: marketing, vendas, etc.
+- **Outros Custos de Aquisição**: folha, veículos, viagens, serviço de instalação (mdo), telefonia, licenças, celular, cpu, marketing (mídia, eventos)
 """)
 
 st.sidebar.header("Parâmetros de Entrada")
