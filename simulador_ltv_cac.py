@@ -174,7 +174,3 @@ st.markdown("""
 ESPECIALISTA DE PROGRESSO  
 *Progress Specialist*
 """)
-
-# Se quiser incluir a imagem da assinatura (foto ou logo)
-st.image("assinatura2.png", width=120)  # Coloque o caminho da imagem
-
